@@ -1,10 +1,8 @@
 from selenium import webdriver
-from bs4 import BeautifulSoup
 import time
 from selenium.webdriver.common.by import By
 import re
 import os
-from sklearn.feature_extraction.text import CountVectorizer
 import joblib
 import json
 import smtplib, ssl
@@ -22,8 +20,8 @@ driver.get('https://www.instagram.com/')
 driver.maximize_window()
 time.sleep(3)
 
-username = "wel_lwisher78"
-password = "ch21032001"
+username = ""
+password = ""
 
 driver.find_element(By.NAME, 'username').send_keys(username)
 time.sleep(2)
@@ -189,9 +187,9 @@ driver.close()
 def mail_sender():
     port = 587  
     smtp_server = "smtp.outlook.com"
-    sender_email = "Mohammed.khalis@hotmail.com"
-    receiver_email = "jayasuryawebdev@gmail.com"
-    password = "Hitman9495074941"
+    sender_email = ""
+    receiver_email = ""
+    password = ""
     message = EmailMessage()
     message["Subject"] = "Cyber Bullying Report"
     message["From"] = sender_email
