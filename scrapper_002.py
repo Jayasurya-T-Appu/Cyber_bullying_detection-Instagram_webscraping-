@@ -20,8 +20,8 @@ driver.get('https://www.instagram.com/')
 driver.maximize_window()
 time.sleep(3)
 
-username = ""
-password = ""
+username = "wel_lwisher78"
+password = "ch21032001"
 
 driver.find_element(By.NAME, 'username').send_keys(username)
 time.sleep(2)
@@ -80,14 +80,17 @@ def write_comments_text():
     print(f"Writing comments to a file of post : {post}")
     commentSection = driver.find_element(By.XPATH, "//ul[@class='_a9z6 _a9z9 _a9za']") # replace class name if doesnt work
     spans = commentSection.find_elements(By.TAG_NAME,'span')
+    print(f"Done Writting comments to a file of post : {post}")
     time.sleep(3)
     f = open("data.txt", "a",encoding='utf-8')
-    
-    for span in spans:
-        print(span.text)
-        f.write(f"{span.text}")
-        f.write(f"\n")
-    f.close()    
+    try:
+        for span in spans:
+            print(span.text)
+            f.write(f"{span.text}")
+            f.write(f"\n")
+        f.close()
+    except:
+        print("Some thing happened")    
     
 
 # Clicking next to the next post
@@ -138,6 +141,7 @@ lst_comment=lst[1::2]
 
     
 # ######################################################
+global vectorizer
 if os.path.exists("trained_model_30min.pkl") and os.path.exists("vectorizer_30min.pkl"):
     # Load the saved model and vectorizer from files
     clf = joblib.load("trained_model_30min.pkl")
@@ -145,6 +149,7 @@ if os.path.exists("trained_model_30min.pkl") and os.path.exists("vectorizer_30mi
 
 def predict(input_text):
 
+    global vectorizer
     input_features = vectorizer.transform([input_text])
 
     # Predict the class label for the input text
